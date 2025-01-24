@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO Event Interface</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- socket.io.js is provied necessary functions to client for socket commumication -->
+    <script src="/socket.io/socket.io.js"></script>
+
+
+    <script src="client.js" defer></script>
+</head>
+<body>
+    <h1>Socket.IO Event Interface</h1>
+
+    <div>
+        <button id="btn" onclick="sendPing()">Ping server</button> <br /> <br />
+
+        <input type="text" id="message-input" placeholder="Enter a message...">
+        <button id="btn" onclick="sendChatMessage()">Send Chat Message</button> <br /> <br />
+
+        <h3>Select Service</h3>
+        <label for="feedback-category">Service: </label>
+        <select id="feedback-category">
+            <option value="account_access">Account Access</option>
+            <option value="it_services">IT Services</option>
+            <option value="registrations">Registrations</option>
+        </select><br /><br />
+        <label for="feedback-message">Write your feedback here: </label>
+        <textarea type="text" id="feedback-message" placeholder="Write your feedback here..." ></textarea> <br /> <br />
+        <button id="btn" onclick="sendFeedback()">Send Feedback</button> <br /> <br />
+    </div>
+    <h2>Event Logs</h2>
+
+    <div id="event-window">
+        <div id="event-log"></div>
+    </div>
+</body>
+</html>
