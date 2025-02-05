@@ -15,17 +15,15 @@ const date = new Date();
 // User signup
 router.post(
     '/signup',
-    // body('username', 'The minimum username length is 6 characters').isLength({min: 6}),
-    // body('password', 'The minimum password length is 6 characters').isLength({min: 6}),
+    body('username', 'The minimum username length is 6 characters').isLength({min: 6}),
+    body('password', 'The minimum password length is 6 characters').isLength({min: 6}),
     async (req, res) => {
         try {
-            // const result = validationResult(req)
-            // if(!result.isEmpty()) {
-            //     return res.status(422).json({status: "false", errors: result.array()})
-            // }
+            const result = validationResult(req)
+            if(!result.isEmpty()) {
+                return res.status(422).json({status: "false", errors: result.array()})
+            }
             console.log("Start to create data")
-            // const {username, firstname} = req.body
-            console.log("data here:")
             console.log(req.body.username)
             const data = new Model({
                 username: req.body.username,
@@ -33,7 +31,6 @@ router.post(
                 lastname: req.body.lastname,
                 password: req.body.password,
             });
-            console.log("Data created")
             const hashedPassword = await bcrypt.hash(data.password, 10);
             data.password = hashedPassword;
             await data.save();

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup & Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h2, h3 {
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #218838;
+}
+
+p {
+    color: red;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>User Authentication</h2>
+
+        <!-- Signup Form -->
+        <div id="signup">
+            <h3>Sign Up</h3>
+            <input type="text" id="signup-username" placeholder="Username (min 6 chars)">
+            <input type="text" id="signup-firstname" placeholder="First Name">
+            <input type="text" id="signup-lastname" placeholder="Last Name">
+            <input type="password" id="signup-password" placeholder="Password (min 6 chars)">
+            <button onclick="signup()">Sign Up</button>
+            <p id="signup-message"></p>
+        </div>
+
+        <hr>
+
+        <!-- Login Form -->
+        <div id="login">
+            <h3>Login</h3>
+            <input type="text" id="login-username" placeholder="Username">
+            <input type="password" id="login-password" placeholder="Password">
+            <button onclick="login()">Login</button>
+            <p id="login-message"></p>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = "http://localhost:3000"; // Change this to your backend URL
+
+        async function signup() {
+            const username = document.getElementById("signup-username").value;
+            const firstname = document.getElementById("signup-firstname").value;
+            const lastname = document.getElementById("signup-lastname").value;
+            const password = document.getElementById("signup-password").value;
+            const message = document.getElementById("signup-message");
+
+            const response = await fetch(`${API_URL}/signup`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, firstname, lastname, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                message.style.color = "green";
+                message.textContent = "Signup successful!";
+            } else {
+                message.style.color = "red";
+                message.textContent = data.message || "Signup failed!";
+            }
+        }
+
+        async function login() {
+            const username = document.getElementById("login-username").value;
+            const password = document.getElementById("login-password").value;
+            const message = document.getElementById("login-message");
+
+            const response = await fetch(`${API_URL}/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                message.style.color = "green";
+                message.textContent = "Login successful!";
+                localStorage.setItem("token", data.token); // Store token
+            } else {
+                message.style.color = "red";
+                message.textContent = data.message || "Login failed!";
+            }
+        }
+
+    </script>
+</body>
+</html>
