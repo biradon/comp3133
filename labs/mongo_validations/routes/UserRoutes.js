@@ -24,8 +24,8 @@ app.post('/insert', async (req, res) => {
             await newUser.save()
             res.status(201).json()
             {
-                message: "User added successfully",
-                user: newUser
+                message: "User added successfully";
+                user: newUser;
             }
         }
     } catch (err) {
@@ -33,9 +33,9 @@ app.post('/insert', async (req, res) => {
 
         if (err.name == "ValidatorError") {
             const validationErrors = Object.values(err.errors).map(err => err.message)
-            res.status(400).json(error: validationErrors)
+            res.status(400).json({error: validationErrors})
         }
-        res.status(400).json(error: err.Message)
+        res.status(400).json({error: err.errors})
     }
 });
 

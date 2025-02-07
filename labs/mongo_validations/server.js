@@ -14,7 +14,7 @@ const connectDB = async() => {
     try{
         console.log(`Attempting to connect to DB`);
 
-        mongoose.connect('YOUR_MONGO_URI_HERE', {
+        mongoose.connect('mongodb+srv://biradon:password123456@cluster0.2pihl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
             useNewUrlParser: true,
             useUnifiedTopology: true
         }).then( () => {

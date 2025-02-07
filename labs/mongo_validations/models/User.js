@@ -17,16 +17,16 @@ const UserSchema = new mongoose.Schema({
     username: {
         type: String,
         required: [true, "username is required"],
-        minLenght: [4, "username cannot be at least 4 characters"],
+        minLength: [4, "username cannot be at least 4 characters"],
         maxLength: [50, "username cannot be more than 50 characters"],
         trim: true
     },
     email: {
         type: String,
-        required: [true, "email is required"]
+        required: [true, "email is required"],
         maxLength: [50, "email cannot be more than 100 chracters"],
         lowercase: true,
-        match: [emailRegEx, "Email format is invalid. Must be XXX@XXX.XXX"]
+        match: [emailRegEx, "Email format is invalid. Must be XXX@XXX.XXX"],
         trim: true
     },
     address: {
@@ -94,7 +94,7 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.pre('save', function(next) {
 
-    console.log(`pre: ${JSON.stringfy(this)}`)
+    console.log(`pre: ${JSON.stringify(this)}`)
     console.log(`user email to save: ${this.email}`)
 
 
@@ -103,6 +103,7 @@ UserSchema.pre('save', function(next) {
 
         if (err) {
             consol.log(`Can't find the document`)
+            next()
         }
 
         if (document.length != 0) {
