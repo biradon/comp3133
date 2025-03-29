@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-form',
+  selector: 'app-edit-form',
   imports: [FormsModule],
-  templateUrl: './add-form.component.html',
-  styleUrl: './add-form.component.css'
+  templateUrl: './edit-form.component.html',
+  styleUrl: './edit-form.component.css'
 })
-export class AddFormComponent {
+export class EditFormComponent {
   employee = {
     name: '',
     phone: '',
@@ -19,9 +19,7 @@ export class AddFormComponent {
   };
 
   onSubmit() {
-    console.log(this.employee); 
+    console.log(this.employee);
     alert(JSON.stringify(this.employee))
   }
-
-
 }
