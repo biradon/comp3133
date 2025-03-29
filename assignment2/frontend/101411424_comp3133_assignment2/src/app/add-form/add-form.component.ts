@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { EmployeeService } from '../service/employee.service';
 
 @Component({
   selector: 'app-add-form',
@@ -8,6 +9,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './add-form.component.css'
 })
 export class AddFormComponent {
+
+  constructor(private apiEmployeeService: EmployeeService) {}
+
+  ngOnInit() {
+    
+  }
+
   employee = {
     name: '',
     phone: '',
@@ -18,9 +26,17 @@ export class AddFormComponent {
     department: ''
   };
 
+
+
   onSubmit() {
-    console.log(this.employee); 
-    alert(JSON.stringify(this.employee))
+    this.apiEmployeeService.createEmployee(this.employee).subscribe({
+      next: (response: any) => {
+        console.log(response)
+      },
+      error: (error: any) => {
+        console.log(`Error while create employee: ${error}`)
+      }
+    })
   }
 
 

@@ -1,1 +1,30 @@
-<p>table-list works!</p>
+<table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Salary</th>
+        <th>Title</th>
+        <th>Position</th>
+        <th>Department</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.phone }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.salary }}</td>
+        <td>{{ emp.title }}</td>
+        <td>{{ emp.position }}</td>
+        <td>{{ emp.department }}</td>
+        <td>
+            <a>Details</a>
+            <a href="/edit" >Edit</a>
+            <a href="/delete" >Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
