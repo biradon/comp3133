@@ -1,24 +1,26 @@
 <table border="1">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Phone</th>
+        <th>First Name</th>
+        <th>Last name</th>
+        <th>Gender</th>
         <th>Email</th>
         <th>Salary</th>
-        <th>Title</th>
-        <th>Position</th>
+        <th>Photo</th>
+        <th>Designation</th>
         <th>Department</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let emp of employees">
-        <td>{{ emp.name }}</td>
-        <td>{{ emp.phone }}</td>
+        <td>{{ emp.first_name }}</td>
+        <td>{{ emp.last_name }}</td>
+        <td>{{ emp.gender }}</td>
         <td>{{ emp.email }}</td>
         <td>{{ emp.salary }}</td>
-        <td>{{ emp.title }}</td>
-        <td>{{ emp.position }}</td>
+        <td>{{ emp.employee_photo }}</td>
+        <td>{{ emp.designation }}</td>
         <td>{{ emp.department }}</td>
         <td>
             <a>Details</a>

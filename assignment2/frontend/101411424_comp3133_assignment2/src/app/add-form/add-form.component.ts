@@ -17,12 +17,13 @@ export class AddFormComponent {
   }
 
   employee = {
-    name: '',
-    phone: '',
+    firstName: '',
+    lastName: '',
     email: '',
+    gender: '',
+    designation: '',
     salary: '',
-    title: '',
-    position: '',
+    employee_photo: '',
     department: ''
   };
 
