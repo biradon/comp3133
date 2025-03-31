@@ -3,10 +3,11 @@ import { Apollo } from 'apollo-angular';
 import { GetAllEmployees } from '../graphql/queries';
 import { CommonModule } from '@angular/common';
 import { DeleteEmployee } from '../graphql/queries';
+import { LogoutBtnComponent } from '../logout-btn/logout-btn.component';
 
 @Component({
   selector: 'app-table-list',
-  imports: [CommonModule],
+  imports: [CommonModule, LogoutBtnComponent],
   templateUrl: './table-list.component.html',
   styleUrl: './table-list.component.css'
 })
