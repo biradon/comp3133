@@ -1,5 +1,5 @@
 <form #employeeForm="ngForm" (ngSubmit)="onSubmit()">
-    <label for="firstName">Firt Name:</label>
+    <label for="firstName">First Name:</label>
     <input id="firstName" name="firstName" [(ngModel)]="employee.firstName" type="text" required>
   
     <label for="lastName">Last name:</label>
@@ -15,7 +15,10 @@
     <input id="designation" name="designation" [(ngModel)]="employee.designation" type="text" required>
   
     <label for="gender">Gender:</label>
-    <input id="gender" name="gender" [(ngModel)]="employee.gender" type="text" required>
+    <select id="gender" name="gender" [(ngModel)]="employee.gender" type="text" required>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
   
     <label for="department">Department:</label>
     <input id="department" name="department" [(ngModel)]="employee.department" type="text" required>

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { EmployeeService } from '../service/employee.service';
+import { Apollo } from 'apollo-angular';
+import { AddEmployee } from '../graphql/queries';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-form',
@@ -10,7 +12,7 @@ import { EmployeeService } from '../service/employee.service';
 })
 export class AddFormComponent {
 
-  constructor(private apiEmployeeService: EmployeeService) {}
+  constructor(private apollo: Apollo) {}
 
   ngOnInit() {
     
@@ -28,16 +30,32 @@ export class AddFormComponent {
   };
 
 
-
   onSubmit() {
-    this.apiEmployeeService.createEmployee(this.employee).subscribe({
-      next: (response: any) => {
-        console.log(response)
-      },
-      error: (error: any) => {
-        console.log(`Error while create employee: ${error}`)
+    this.apollo.mutate({
+      mutation: AddEmployee,
+      variables: {
+        input: {
+          first_name: this.employee.firstName,
+          last_name: this.employee.lastName,
+          email: this.employee.email,
+          gender: this.employee.gender,
+          designation: this.employee.designation,
+          salary: this.employee.salary,
+          employee_photo: this.employee.employee_photo,
+          department: this.employee.department,
+        }
       }
-    })
+    }).subscribe({
+      next: (response) => {
+        console.log('Employee added successfully:', response);
+        alert('Employee added successfully')
+      },
+      error: (err) => {
+        console.error('Error adding employee:', err);
+      }
+    });
+
+    console.log(this.employee);
   }
 
 

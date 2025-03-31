@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client/core';
 
-export const GetAllEmployees = gql`
+const GetAllEmployees = gql`
     query GetAllEmployees {
         getAllEmployees {
             id
@@ -18,3 +18,93 @@ export const GetAllEmployees = gql`
         }
     }
 `;
+
+const AddEmployee = gql`
+    mutation AddNewEmployee($input: EmployeeInput) {
+        addNewEmployee(input: $input) {
+            id
+            first_name
+            last_name
+            email
+            gender
+            designation
+            salary
+            date_of_joining
+            department
+            employee_photo
+            created_at
+            updated_at
+        }
+    }
+`
+
+const UpdateEmployee = gql`
+    mutation UpdateEmployee($input: EmployeeInput) {
+        updateEmployee(input: $input) {
+            id
+            first_name
+            last_name
+            email
+            gender
+            designation
+            salary
+            date_of_joining
+            department
+            employee_photo
+            created_at
+            updated_at
+        }
+    }
+`
+
+const DeleteEmployee = gql`
+    mutation DeleteEmployee($deleteEmployeeId: ID!) {
+        deleteEmployee(id: $deleteEmployeeId) {
+            success
+            message
+        }
+    }
+`
+
+const SearchEmployeeByID = gql`
+    query SearchById($searchByIdId: ID) {
+        searchById(id: $searchByIdId) {
+            id
+            first_name
+            last_name
+            email
+            gender
+            designation
+            salary
+            date_of_joining
+            department
+            employee_photo
+            created_at
+            updated_at
+        }
+    }
+`
+
+const SearchEmployeeByDepartment = gql`
+    query SearchByDesignationOrDepartment($department: String, $designation: String) {
+        searchByDesignationOrDepartment(department: $department, designation: $designation) {
+            id
+            first_name
+            last_name
+            email
+            gender
+            designation
+            salary
+            date_of_joining
+            department
+            employee_photo
+            created_at
+            updated_at
+        }
+    }
+`
+
+
+
+
+export {GetAllEmployees, AddEmployee, DeleteEmployee, UpdateEmployee, SearchEmployeeByID, SearchEmployeeByDepartment}
