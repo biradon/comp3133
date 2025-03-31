@@ -104,7 +104,34 @@ const SearchEmployeeByDepartment = gql`
     }
 `
 
+const SignUp = gql`
+    mutation Signup($input: UserInput!) {
+        signup(input: $input) {
+            id
+            username
+            email
+            password
+            created_at
+            updated_at
+        }
+    }
+`
+
+const SignIn = gql`
+    query Login($email: String, $username: String, $password: String) {
+        login(email: $email, username: $username, password: $password) {
+            id
+            username
+            email
+            password
+            created_at
+            updated_at
+        }
+    }
+`
 
 
 
-export {GetAllEmployees, AddEmployee, DeleteEmployee, UpdateEmployee, SearchEmployeeByID, SearchEmployeeByDepartment}
+
+
+export {GetAllEmployees, AddEmployee, DeleteEmployee, UpdateEmployee, SearchEmployeeByID, SearchEmployeeByDepartment, SignIn, SignUp}

@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Apollo } from 'apollo-angular';
+import { SignIn } from '../graphql/queries';
+import { SignUp } from '../graphql/queries';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -13,8 +18,11 @@ export class LoginFormComponent {
 
   user = {
     username: '',
-    password: ''
+    password: '',
+    email: '',
   };
+
+  constructor(private apollo: Apollo, private route: ActivatedRoute, private router: Router) {}
 
   onSubmit() {
     console.log(this.user); // Outputs: { username: 'user input', password: 'pass input' }
@@ -23,11 +31,46 @@ export class LoginFormComponent {
 
 
   public loginClick(): void {
-    alert(`Click Login ${this.user.username}`)
+    this.apollo.watchQuery({
+      query: SignIn,
+      variables: {
+        username: this.user.username,
+        password: this.user.password
+      }
+    })
+    .valueChanges.subscribe({
+      next: (result: any) => {
+        alert(`Welecome ${this.user.username} back!`)
+        this.router.navigate(['/list']);
+      },
+      error: (err) => {
+        console.error('Error while login:', err);
+        alert(`User not found, please try again`)
+      }
+    })
   }
 
   public signUpClick(): void {
-    alert(`Click Signup ${this.user.username}`)
+    this.apollo.mutate({
+      mutation: SignUp,
+      variables: {
+        input: {
+          username: this.user.username,
+          password: this.user.password,
+          email: `${this.user.username}@gbc.ca`
+        }
+      }
+    }).subscribe({
+      next: (response) => {
+        console.log('Employee signup successfully:', response);
+        alert('Employee signUp successfully');
+        this.router.navigate(['/list']);
+      },
+      error: (err) => {
+        console.error(`Error Signup: `, err)
+        alert(`Error while signing up: Please try again`)
+      }
+    })
   }
 }
 
