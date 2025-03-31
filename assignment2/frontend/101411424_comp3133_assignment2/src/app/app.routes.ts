@@ -11,6 +11,6 @@ export const routes: Routes = [
     { path: 'login', component: LoginFormComponent},
     { path: 'list', component: TableListComponent},
     { path: 'add', component: AddFormComponent},
-    { path: 'edit', component: EditFormComponent},
+    { path: 'edit/:id', component: EditFormComponent},
     { path: '**', component: NotFoundComponent }
 ];

@@ -19,8 +19,8 @@ export class AddFormComponent {
   }
 
   employee = {
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     email: '',
     gender: '',
     designation: '',
@@ -35,8 +35,8 @@ export class AddFormComponent {
       mutation: AddEmployee,
       variables: {
         input: {
-          first_name: this.employee.firstName,
-          last_name: this.employee.lastName,
+          first_name: this.employee.first_name,
+          last_name: this.employee.last_name,
           email: this.employee.email,
           gender: this.employee.gender,
           designation: this.employee.designation,
