@@ -4,7 +4,7 @@ import { Apollo } from 'apollo-angular';
 import { SignIn } from '../graphql/queries';
 import { SignUp } from '../graphql/queries';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { SessionManagementService } from '../service/session-management.service';
 
 
 
@@ -22,7 +22,11 @@ export class LoginFormComponent {
     email: '',
   };
 
-  constructor(private apollo: Apollo, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private apollo: Apollo, 
+    private router: Router, 
+    private sessionService: SessionManagementService
+  ) {}
 
   onSubmit() {
     console.log(this.user); // Outputs: { username: 'user input', password: 'pass input' }
@@ -41,6 +45,7 @@ export class LoginFormComponent {
     .valueChanges.subscribe({
       next: (result: any) => {
         alert(`Welecome ${this.user.username} back!`)
+        this.sessionService.setSession(this.user.username);
         this.router.navigate(['/list']);
       },
       error: (err) => {
@@ -64,6 +69,7 @@ export class LoginFormComponent {
       next: (response) => {
         console.log('Employee signup successfully:', response);
         alert('Employee signUp successfully');
+        this.sessionService.setSession(this.user.username);
         this.router.navigate(['/list']);
       },
       error: (err) => {
