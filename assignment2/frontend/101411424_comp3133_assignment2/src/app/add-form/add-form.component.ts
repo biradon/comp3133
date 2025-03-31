@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Apollo } from 'apollo-angular';
 import { AddEmployee } from '../graphql/queries';
-import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-add-form',
@@ -12,7 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AddFormComponent {
 
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     
@@ -49,6 +51,7 @@ export class AddFormComponent {
       next: (response) => {
         console.log('Employee added successfully:', response);
         alert('Employee added successfully')
+        this.router.navigate(['/list']);
       },
       error: (err) => {
         console.error('Error adding employee:', err);

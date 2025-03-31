@@ -35,3 +35,19 @@ form {
   button:hover {
     background: #0056b3;
   }
+
+  .back-btn {
+    background-color: #5F8B4C; /* Gray */
+    margin: 20%;
+    color: white;
+    border: none;
+  }
+
+  .btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px
+  }

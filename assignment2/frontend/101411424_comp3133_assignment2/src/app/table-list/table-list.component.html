@@ -1,8 +1,9 @@
-<table border="1">
+<div class="table-container">
+  <table>
     <thead>
       <tr>
         <th>First Name</th>
-        <th>Last name</th>
+        <th>Last Name</th>
         <th>Gender</th>
         <th>Email</th>
         <th>Salary</th>
@@ -19,14 +20,14 @@
         <td>{{ emp.gender }}</td>
         <td>{{ emp.email }}</td>
         <td>{{ emp.salary }}</td>
-        <td>{{ emp.employee_photo }}</td>
+        <td><img src="{{ emp.employee_photo }}" alt="Employee Photo"></td>
         <td>{{ emp.designation }}</td>
         <td>{{ emp.department }}</td>
         <td>
-            <a>Details</a>
-            <a href="/edit/{{emp.id}}" >Edit</a>
-            <a href="/delete" >Delete</a>
+          <a href="/details/{{emp.id}}" class="details-btn">Details</a>
         </td>
       </tr>
     </tbody>
   </table>
+  <a class="btn add-btn" href="/add">Add Employee</a>
+</div>

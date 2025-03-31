@@ -2,17 +2,18 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Apollo } from 'apollo-angular';
 import { UpdateEmployee } from '../graphql/queries';
+import { DeleteEmployee } from '../graphql/queries';
 import { ActivatedRoute } from '@angular/router';
 import { SearchEmployeeByID } from '../graphql/queries';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-edit-form',
+  selector: 'app-details',
   imports: [FormsModule],
-  templateUrl: './edit-form.component.html',
-  styleUrl: './edit-form.component.css'
+  templateUrl: './details.component.html',
+  styleUrl: './details.component.css'
 })
-export class EditFormComponent {
+export class DetailsComponent {
 
   employeeId: string | null = null;
   loading: boolean = true;
@@ -50,7 +51,6 @@ export class EditFormComponent {
         next: (result: any) => {
           this.employee = result.data?.searchById;
           this.loading = result.loading;
-          console.log(`Employee info: ${JSON.stringify(this.employee)}`)
           this.editableEmployee = { ...this.employee }
         },
         error: (err) => {
@@ -62,6 +62,10 @@ export class EditFormComponent {
 
 
   onSubmit() {
+
+  }
+
+  public editClick(): void {
     this.apollo.mutate({
       mutation: UpdateEmployee,
       variables: {
@@ -91,5 +95,27 @@ export class EditFormComponent {
     });
   
     console.log(this.editableEmployee);
+  }
+
+  public deleteClick(): void {
+    if (confirm('Are you sure you want to delete this employee?')) {
+      this.apollo.mutate({
+        mutation: DeleteEmployee,
+        variables: { deleteEmployeeId: this.employeeId }
+      }).subscribe({
+        next: (response: any) => {
+          if (response.data.deleteEmployee.success) {
+            alert('Employee deleted successfully!');
+            this.router.navigate(['/list']);
+          } else {
+            alert('Failed to delete employee: ' + response.data.deleteEmployee.message);
+          }
+        },
+        error: (err) => {
+          console.error('Error deleting employee:', err);
+          alert('An error occurred while deleting the employee.');
+        }
+      });
+    }
   }
 }

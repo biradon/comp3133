@@ -21,7 +21,6 @@ export class EmployeeService {
   }
   
 
-
   public getEmployeeByID(id: string): Observable<any> {
     return this.httpClient.get(`${this.API_BASE_URL}/${id}`)
   }

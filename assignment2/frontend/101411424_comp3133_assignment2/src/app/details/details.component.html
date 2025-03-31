@@ -1,3 +1,5 @@
+<a class="btn back-btn" href="/list">Back To List</a>
+
 <form #employeeForm="ngForm" (ngSubmit)="onSubmit()">
     <label for="first_name">First Name:</label>
     <input id="first_name" name="first_name" [(ngModel)]="editableEmployee.first_name" type="text" required>
@@ -25,6 +27,10 @@
 
     <label for="employee_photo">Employee Photo:</label>
     <input id="employee_photo" name="employee_photo" [(ngModel)]="editableEmployee.employee_photo" type="text" required>
+    
+    <button type="button" (click)="editClick()" class="btn edit-btn">Edit</button>
+    <button type="button" (click)="deleteClick()" class="btn delete-btn">Delete</button>
+    
 
-    <button type="submit">Edit Employee</button>
+
 </form>

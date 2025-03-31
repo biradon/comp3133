@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { GetAllEmployees } from '../graphql/queries';
 import { CommonModule } from '@angular/common';
+import { DeleteEmployee } from '../graphql/queries';
 
 @Component({
   selector: 'app-table-list',
@@ -10,6 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './table-list.component.css'
 })
 export class TableListComponent {
+  employeeId: string | null = null;
   employees: any[] = []
   error: any;
 
@@ -23,38 +25,11 @@ export class TableListComponent {
       this.error = error;
       console.log(data)
   });
-}
+  }
 
-  // getEmployees() {
-  //   this.apiEmployeeService.getEmployees().subscribe({
-  //     next: (response: any) => {
-  //       this.employees = response
-  //     },
-  //     error: (error: any) => {
-  //       console.log(`Error while get employees: ${error}`)
-  //     }
-  //   })
-  // }
 
-  // getEmployeebyID() {
-  //   this.apiEmployeeService.getEmployeeByID("1").subscribe({
-  //     next: (response: any) => {
-  //       this.employees = response
-  //     },
-  //     error: (error: any) => {
-  //       console.log(`Error while get employee by ID: ${error}`)
-  //     }
-  //   })
-  // }
 
-  // deleteEmployee() {
-  //   this.apiEmployeeService.deleteEmployee("1").subscribe({
-  //     next: (response: any) => {
-  //       this.employees = response
-  //     },
-  //     error: (error: any) => {
-  //       console.log(`Error while delete employee: ${error}`)
-  //     }
-  //   })
-  // }
+
+
+
 }
