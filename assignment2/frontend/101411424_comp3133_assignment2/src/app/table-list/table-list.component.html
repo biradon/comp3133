@@ -1,5 +1,17 @@
 <app-logout-btn></app-logout-btn>
 
+<div class="search-container">
+  <input 
+    type="text" 
+    class="search-input" 
+    placeholder="Search Department..." 
+    [(ngModel)]="employeeDepartment"
+    name="employeeDepartment">
+  
+  <button class="search-btn" (click)="searchClick()">🔍</button>
+  <button class="cancel-btn" (click)="cancelSearch()">❌</button>
+</div>
+
 <div class="table-container">
   <table>
     <thead>

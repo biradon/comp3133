@@ -105,3 +105,48 @@ button {
   border: none;
   cursor: pointer;
 }
+
+
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  width: 300px;
+  background: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 15px 0 0 15px;
+}
+
+.search-btn {
+  background: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 0 15px 15px 0;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s ease-in-out;
+}
+
+.search-btn:hover {
+  background: #0056b3;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+  color: white;
+  border-radius: 5px;
+  margin: 10px;
+}

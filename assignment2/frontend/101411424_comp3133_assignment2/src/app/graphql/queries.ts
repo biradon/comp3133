@@ -134,4 +134,6 @@ const SignIn = gql`
 
 
 
+
+
 export {GetAllEmployees, AddEmployee, DeleteEmployee, UpdateEmployee, SearchEmployeeByID, SearchEmployeeByDepartment, SignIn, SignUp}
