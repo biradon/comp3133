@@ -6,11 +6,10 @@ services:
     build: ./backend
     container_name: nodejs_backend
     restart: always
-    environment:
-      - MONGODB_URL=mongodb+srv://biradon:bkaFUCKx90wd4TTm@cluster0.2pihl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-      - PORT=8088
+    env_file:
+      - ./backend/.env
     ports:
-      - "8088:8088"
+      - "8087:8087"
     volumes:
       - ./backend:/app
       - /app/node_modules
@@ -28,6 +27,6 @@ services:
     volumes:
       - ./frontend/101411424_comp3133_assignment2:/app
       - /app/node_modules
-    command: ["npm", "start"]
+    command: ["ng", "serve", "--host", "0.0.0.0"]
 
 

@@ -1,7 +1,7 @@
 FROM node:22
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm install --force
 COPY . .
-EXPOSE 8088
-CMD ["npm", "start"]
+EXPOSE 8087
+CMD ["node", "server.js"]
