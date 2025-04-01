@@ -26,8 +26,8 @@
     <label for="department">Department:</label>
     <input id="department" name="department" [(ngModel)]="employee.department" type="text" required>
 
-    <label for="department">Employee Photo:</label>
-    <input id="department" name="department" [(ngModel)]="employee.employee_photo" type="text" required>
+    <label for="employee_photo">Employee Photo:</label>
+    <input id="employee_photo" name="employee_photo" [(ngModel)]="employee.employee_photo" type="file" accept="image/*" (change)="onFileSelected($event)" required>
   
     <button type="submit">Add Employee</button>
 </form>

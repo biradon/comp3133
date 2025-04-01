@@ -79,9 +79,9 @@ const employeeResolver = {
                 if (!existingEmployee) {
                     throw new Error(`Employee with ID ${input.id} not found`);
                 }
-        
-                const updatedEmployee = await Employee.findOneAndUpdate(
-                    input._id, 
+                console.log(`Updating Employee ID: ${input.id}`)
+                const updatedEmployee = await Employee.findByIdAndUpdate(
+                    input.id, 
                     input, 
                     { new: true} 
                 );

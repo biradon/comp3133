@@ -26,7 +26,7 @@
     <input id="department" name="department" [(ngModel)]="editableEmployee.department" type="text" required>
 
     <label for="employee_photo">Employee Photo:</label>
-    <input id="employee_photo" name="employee_photo" [(ngModel)]="editableEmployee.employee_photo" type="text" required>
+    <input id="employee_photo" name="employee_photo" [(ngModel)]="editableEmployee.employee_photo" type="file" accept="image/*" (change)="onFileSelected($event)" required>
     
     <button type="button" (click)="editClick()" class="btn edit-btn">Edit</button>
     <button type="button" (click)="deleteClick()" class="btn delete-btn">Delete</button>
