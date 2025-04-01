@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+
+  backend:
+    build: ./backend
+    container_name: nodejs_backend
+    restart: always
+    environment:
+      - MONGODB_URL=mongodb+srv://biradon:bkaFUCKx90wd4TTm@cluster0.2pihl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      - PORT=8088
+    ports:
+      - "8088:8088"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    build:
+      context: ./frontend/101411424_comp3133_assignment2
+      dockerfile: Dockerfile
+    container_name: angular_frontend
+    restart: always
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/101411424_comp3133_assignment2:/app
+      - /app/node_modules
+    command: ["npm", "start"]
+
+
